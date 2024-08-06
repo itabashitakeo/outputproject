@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sine Wave Plot</title>
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-</head>
-<body>
-    <!-- HTML描画部分 -->
-    <div id="sine_plot"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <!-- 追加 ここから -->
+    <py-env>
+      - numpy
+      - matplotlib
+    </py-env>
+    <!-- 追加 ここまで -->
+    <title>PyScript Playground</title>
+  </head>
 
-    <!-- ライブラリの読み込み -->
-    <py-config>
-        packages = ["numpy", "matplotlib"]
-    </py-config>
-    
-    <!-- Python Script -->
-    <py-script>
-        import numpy as np
-        import matplotlib.pyplot as plt
+  <body>
+    <main class="py-5 grid gap-y-4 grid-cols-1 place-items-center">
+      <p id="title" class="text-center"></p>
+      <!-- 追加 ここから -->
+      <py-button id="graph-button" label="グラフを表示"></py-button>
+      <div id="graph-container"></div>
+      <!-- 追加 ここまで -->
+    </main>
 
-        x = np.linspace(0, 2 * np.pi, 100)
-        y = np.sin(x)
+    <py-script output="title">
+import platform
 
-        fig, ax = plt.subplots()
-        ax.plot(x, y)
-        plt.title('Sine Wave')
-
-        pyscript.write('sine_plot', fig)
+print('I love PyScript')
+print('Python version: {}'.format(platform.python_version()))
     </py-script>
-</body>
+    <!-- 追加 ここから -->
+    <py-script>
+import numpy as np
+from numpy import pi, sin, cos
+import matplotlib.pyplot as plt
+
+graph_button = Element('graph-button')
+
+def display_graph(*ags, **kwgs):
+    t = np.arange(0,2*pi,0.01)
+    x = 16*sin(t)**3
+    y = 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
+    fig, ax = plt.subplots()
+    ax.fill_between(x, y, facecolor='red', alpha=0.5)
+    pyscript.write('graph-container', fig)
+
+graph_button.element.onclick = display_graph
+    </py-script>
+    <!-- 追加 ここまで -->
+
+  </body>
+
 </html>
