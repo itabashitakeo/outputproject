@@ -1,55 +1,52 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <!-- 追加 ここから -->
-    <py-env>
-      - numpy
-      - matplotlib
-    </py-env>
-    <!-- 追加 ここまで -->
-    <title>PyScript Playground</title>
-  </head>
+<!doctype html>
 
-  <body>
-    <main class="py-5 grid gap-y-4 grid-cols-1 place-items-center">
-      <p id="title" class="text-center"></p>
-      <!-- 追加 ここから -->
-      <py-button id="graph-button" label="グラフを表示"></py-button>
-      <div id="graph-container"></div>
-      <!-- 追加 ここまで -->
-    </main>
+<html>
+    <head>
+        <!-- Recommended meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <py-script output="title">
-import platform
+        <!-- PyScript CSS -->
+        <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+        <!-- CSS for examples -->
+        <link rel="stylesheet" href="./assets/css/examples.css" />
 
-print('I love PyScript')
-print('Python version: {}'.format(platform.python_version()))
-    </py-script>
-    <!-- 追加 ここから -->
-    <py-script>
-import numpy as np
-from numpy import pi, sin, cos
-import matplotlib.pyplot as plt
+        <!-- This script tag bootstraps PyScript -->
+        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
-graph_button = Element('graph-button')
+        <!-- for splashscreen -->
+        <style>
+            #loading { outline: none; border: none; background: transparent }
+        </style>
+        <script type="module">
+            const loading = document.getElementById('loading');
+            addEventListener('py:ready', () => loading.close());
+            loading.showModal();
+        </script>
 
-def display_graph(*ags, **kwgs):
-    t = np.arange(0,2*pi,0.01)
-    x = 16*sin(t)**3
-    y = 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
-    fig, ax = plt.subplots()
-    ax.fill_between(x, y, facecolor='red', alpha=0.5)
-    pyscript.write('graph-container', fig)
+        <title>Altair</title>
+        <link rel="icon" type="image/png" href="./assets/favicon.png" />
+    </head>
 
-graph_button.element.onclick = display_graph
-    </py-script>
-    <!-- 追加 ここまで -->
+    <body>
+        <dialog id="loading">
+            <h1>Loading...</h1>
+        </dialog>
 
-  </body>
+        <nav class="navbar" style="background-color: #000000">
+            <div class="app-header">
+                <a href="/">
+                    <img src="./assets/logo.png" class="logo" />
+                </a>
+                <a class="title" href="" style="color: #f0ab3c">Altair</a>
+            </div>
+        </nav>
+
+        <section class="pyscript">
+            <div id="altair"></div>
+            <script type="py" src="./main.py" config="./pyscript.toml"></script>
+        </section>
+
+    </body>
 
 </html>
