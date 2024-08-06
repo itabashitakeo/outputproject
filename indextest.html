@@ -17,11 +17,10 @@ import sys
 import requests
 from IPython.display import display
 import pandas as pd
-        import pyodide_http
-
-        # PyScript では requests をそのまま利用できないので、
-        # pyodide_http を使用してパッチをあてる
-        pyodide_http.patch_all()
+import pyodide_http
+# PyScript では requests をそのまま利用できないので、
+# pyodide_http を使用してパッチをあてる
+pyodide_http.patch_all()
 
 pd.set_option("display.max_columns", None)
 
