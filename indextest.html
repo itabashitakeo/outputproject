@@ -1,41 +1,18 @@
-<!doctype html>
-
 <html>
-    <head>
-        <!-- Recommended meta tags -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+        - numpy
+    </py-env>
+  </head>
 
-        <!-- PyScript CSS -->
-        <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-        <!-- CSS for examples -->
-        <link rel="stylesheet" href="./assets/css/examples.css" />
-
-        <!-- This script tag bootstraps PyScript -->
-        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
-
-        <!-- for splashscreen -->
-        <style>
-            #loading { outline: none; border: none; background: transparent }
-        </style>
-        <title>Blockchain-outputtest</title>
-    </head>
-
-    <body>
-        <dialog id="loading">
-            <h1>Loading...</h1>
-        </dialog>
-
-        <nav class="navbar" style="background-color: #000000">
-            <div class="app-header">
-                <a class="title" href="" style="color: #f0ab3c">Blockchain-outputtest</a>
-            </div>
-        </nav>
-        <section class="pyscript">
-            <div id="Blockchain-outputtest"></div>
-            <script type="py" src="./main.py"></script>
-        </section>
-
-    </body>
-
+  <body>
+    <py-script>
+import numpy as np
+a = np.array([[3,1,4,1,5],[9,2,6,5,3]])
+b = np.array([5,8,9,7,9])
+a * b
+    </py-script>
+  </body>
 </html>
