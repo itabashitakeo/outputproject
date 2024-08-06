@@ -1,14 +1,34 @@
+<!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sine Wave Plot</title>
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-  </head>
-  <body>
+</head>
+<body>
+    <!-- HTML描画部分 -->
+    <div id="sine_plot"></div>
+
+    <!-- ライブラリの読み込み -->
+    <py-config>
+        packages = ["numpy", "matplotlib"]
+    </py-config>
+    
+    <!-- Python Script -->
     <py-script>
-      from datetime import datetime
-      now = datetime.now()
-      print(f"今は{now:%Y年%m月%d日 %H:%M:%S}です。")
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        x = np.linspace(0, 2 * np.pi, 100)
+        y = np.sin(x)
+
+        fig, ax = plt.subplots()
+        ax.plot(x, y)
+        plt.title('Sine Wave')
+
+        pyscript.write('sine_plot', fig)
     </py-script>
-  </body>
+</body>
 </html>
