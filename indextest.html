@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>blockchain-output test</title>
-      <link rel="stylesheet" href="https://pyscript.net/releases/2024.8.2/core.css">
-      <script type="module" src="https://pyscript.net/releases/2024.8.2/core.js"></script>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   </head>
   <body>
-    <script type="py" terminal>
-      # ここにPythonのコードを記述
-      print("Hello, World!")
-      print("\n")
-      for i in range(10):
-        print(str(i) + "こんにちは")
-
-    </script>
+    <py-script>
+      from datetime import datetime
+      now = datetime.now()
+      print(f"今は{now:%Y年%m月%d日 %H:%M:%S}です。")
+    </py-script>
   </body>
 </html>
