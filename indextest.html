@@ -3,12 +3,17 @@
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <py-env>
-        - numpy
+        - IPython.display
     </py-env>
   </head>
-
   <body>
     <py-script>
+import json
+import sys
+import requests
+from IPython.display import display
+import pandas as pd
+
 pd.set_option("display.max_columns", None)
 
 API_URL = "https://api.jquants.com"
